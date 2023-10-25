@@ -1,0 +1,1342 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" sizes="16x16 32x32" href="images/icon_logo.ico">
+    <title>서기정's portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="common.css" type="text/css" rel="stylesheet">
+    <link href="fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    
+    <!-- 메인컬러 : #8b32a2 -->
+    
+    <style>
+        /*
+                .count-particles{
+                    position: absolute;
+                    top: 48px;
+                    left: 0;
+                    width: 80px;
+                    font-size: 8em;
+                    text-align: left;
+                    text-indent: 4px;
+                    line-height: 14px;
+                    padding-bottom: 2px;
+                    font-weight: bold;
+                    display: none;
+                }
+                .js-count-particles{font-size: 1.1em;}
+                #stats,.count-particles{
+                    -webkit-user-select: none;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                }
+                #stats{border-radius: 3px 3px 0 0; overflow: hidden;}
+                .count-particles{border-radius: 0 0 3px 3px;}
+                #particles-js{
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('');
+                    background-size: cover;
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                }
+        */
+        #main_5 ol, #main_2 #ul_wrap {transform-origin: 0 50%; transform: scaleX(0); transition: .5s;}
+        
+        .main_box {background: url(images/background_flat.jpg);}
+        #main_1 {background: url(images/background.jpg);}
+        /*#main_1 {background-color: #87CEFA;}
+        #main_1 #ground {background-color: #f4dcb6; width: 100%; height: 27%; position: absolute; bottom: 0; opacity: .9;}
+        #main_1 svg#character {position: absolute; bottom: 10%; right: 10%;}
+        #main_1 svg#cloud {position: absolute; top: 10%; left: 10%;}
+        #main_1 .ground {position: absolute; width: 25%; height: 120%; background-color: #f4dcb6; bottom: 0; border-radius: 10vw;}
+        #main_1 .ground:nth-child(1) {left: 0;}
+        #main_1 .ground:nth-child(2) {left: 25%;}
+        #main_1 .ground:nth-child(3) {left: 50%;}
+        #main_1 .ground:nth-child(4) {left: 75%;}*/
+        
+        #main_1 #text {position: fixed; top: 60%; left: 40%;}
+        #main_1 .moving_text {font-size: 3rem; color: #ddd; display: inline-block; margin-right: -2%;}
+        #main_1 .moving_text:nth-child(6),#main_1 .moving_text:nth-child(7),#main_1 .moving_text:nth-child(8) {color: #320064}
+        #main_1 .typewrite, #main_1 .typewrite+div {font-size: 1.2rem; color: #777; display: inline-block;}
+        
+        .main_box >#title {height: 5vh; font-size: 1.6rem; text-align: center; line-height: 5vh; background-color: #320064; position: relative; z-index: 1; width: 15vw; margin: 2.5vh auto; border-right: 2px solid #fff; border-left: 2px solid #fff; color: #fff;}
+        .main_box .title_line {position: absolute; width: 2px; height: 2px; background-color: #320064;}
+        .main_box #title_top {width: 90%; top: 5%; left: 5%;}
+        .main_box #title_bottom {width: 90%; bottom: 5%; left: 5%;}
+        .main_box #title_left {height: 90%; top: 5%; left: 5%;}
+        .main_box #title_right {height: 90%; top: 5%; right: 5%;}
+        
+        #main_2 {background-color: #f5f5f5;}
+        #main_2 #sub_title {font-size: 1.1rem; color: #555; text-align: left; line-height: 2; width: 160%;}
+        #main_2 #ul_wrap {position: relative; font-size: 2rem;}
+        #main_2 #ul_wrap ul {position: relative; z-index: 3; height: 90vh;}
+        #main_2 #ul_wrap ul li {height: 30%; cursor: pointer; width: 50%; position: relative; float: left;}
+        #main_2 #ul_wrap ul li:nth-child(1),
+        #main_2 #ul_wrap ul li:nth-child(2) {margin-top: 5%}
+        #main_2 #ul_wrap li span {font-size: 3rem; position: absolute; left: 50%; transform: translateX(-100%); transition: .5s;}
+        #main_2 #ul_wrap li >div {display: inline-block; vertical-align: middle; left: 50%; top: 12%; transition: .5s;}
+        #main_2 #ul_wrap li:hover span {transform: translateX(0);}
+        #main_2 #ul_wrap li:hover >div {transform: translateX(-100%);}
+        
+        #main_2 #ul_wrap .ul_text {position: relative; font-size: 1.4rem; line-height: 5;}
+        #main_2 #ul_wrap .ul_text:after {content: ''; background-image: url(images/icon_more.png); width: 20px; height: 20px; background-size: cover; position: absolute; top: 40%; right: -30px;}
+        #main_2 #ul_wrap #text_line {position: absolute; width: 1vw; height: 2px; background-color: #000; top: 15%; left: 0; transition: .7s;}
+        #main_2 #ul_wrap li:hover #text_line {width: 100%;}
+        #main_2 .ul_item {position: absolute; top: 8%; left: 6%; bottom: 8%; right: 6%; background-color: #fff; visibility: hidden; opacity: 0; transition: 1s; overflow: hidden;}
+        #main_2 #ul_line {position: absolute; top: -15%; right: -5px; width: 5px; height: 110vh; background-color: #320064;}
+        #main_2 #ul_triangle {position: absolute; right: -75px; top: 45%; width: 0; height: 0; border: 50px solid #320064; border-left-color: transparent; border-bottom-color: transparent; transform: rotate(45deg); transform-origin: 100% 0; cursor: pointer;}
+        
+        #main_2 .item_list {width: 20%; height: 33.33%; box-sizing: border-box; border: 1px solid #ccc; text-align: center; float: left; position: relative; cursor: pointer; left: 0; top: 0;}
+        #main_2 .item_list .split {width: 50%; height: 100%;}
+        #main_2 img {position:absolute; max-width:95%; max-height:95%; width:auto; height:auto; margin:auto; top:0; bottom:0; left:0; right:0;}
+        #main_2 img:hover {cursor: row-resize;}
+        #main_2 .item_list img+div {font-size: 1.2rem; background-color: rgba(255,255,255,.7); text-align: left; transition: .5s; opacity: 0; z-index: 1; position: absolute; bottom: 0; line-height: 2; width: 100%; height: 100%; padding: 13% 3%; box-sizing: border-box;}
+        #main_2 .item_list:hover img+div {opacity: 1;}
+        #main_2 .item_list #plus {width: 30px; height: 30px; bottom: 3%; right: 3%; position: absolute; border: 1px solid #555; color: #555; font-size: 2rem; padding: 3px; text-align: center; line-height: 26px; border-radius: 50%; z-index: 2; background-color: #fff; transition: .5s;}
+        #main_2 .item_list #plus:hover {transform: rotate(360deg);}
+        
+        #main_2 #item_list_detail {position: relative; width: 100%; height: 100%; z-index: 4; transform: translateX(100%); opacity: 0; background-color: #fff;}
+        #main_2 #item_list_detail .split {width: 50%; height: 100%; position: absolute;}
+        #main_2 #item_list_detail .split:nth-child(2) {right: 0;}
+        #main_2 #item_list_detail img {opacity: 0; cursor: pointer;}
+        #main_2 #ul_wrapping {width: 90%; height: 88.8%; background-color: rgba(255,255,255,.8); z-index: 1; position: absolute; left: 5%; top: 6%; display: none;}
+        
+        #main_2 #item_4 .item_list {width: 33.33%; height: 100%;}
+        #main_2 #item_4 .item_list div:first-child {font-size: 2rem;}
+        #main_2 #item_5 .item_list {width: 100%; height: 100%;}
+        #main_2 #item_6 .item_list {width: 100%; height: 100%;}
+        #main_2 #item_6 a {bottom: 3%; left: 3%; position: absolute; border: 1px solid #555; color: #555; font-size: .8rem; padding: 3px; text-align: center; line-height: 30px; border-radius: 25px; z-index: 2; background-color: #fff; transition: .5s;}
+        #main_2 #item_6 a#mypart {left: 8%;}
+        #main_2 #item_6 a:hover {background-color: #ccc;}
+       
+        i:first-child {color: #320064; width: 80%; left: 10%; display: none;}
+        /*li:hover i:first-child {border: 1px solid #320064; color: transparent; border-radius: 50%;}*/
+        i {transition: 1s; font-size: 2rem;}
+        i:last-child {color: #320064;}
+        li:hover i:last-child {color: #fff;}
+         
+        #main_5 ol {width: 100%; height: 90%; padding: 0 5%; box-sizing: border-box;}
+        #main_5 ol li {width: 100%; margin: 2% 0; text-align: left; height: 11%;}
+        #main_5 ol li #list_title {font-size: 1.2rem;}
+        #main_5 ol li #list_text {font-size: .9rem; color: #777;}
+        #main_5 ol li span+div {display: inline-block; vertical-align: middle;}
+        
+        #main_4 {height: 35vh;}
+        #main_4 #title {margin: 0 auto;}
+        #main_4 .split {position: absolute; width: 30%; height: 100%; padding: 2% 5%; left: 20%; top: 0;}
+        #main_4 .split+.split {left: 38.5%;}
+        
+        #main_4 #mail_wrap {width: 150px; height: 150px; position: relative; margin: 3vh auto; border-radius: 10%; border: 1px solid #fff;}
+        #main_4 #mail_wrap:hover #mail_head {transform: rotateX(180deg); z-index: 1; transition: .5s;}
+        #main_4 #mail_wrap:hover #mail_inner {transform: translateY(-40%); transition: .5s .3s;}
+        #main_4 #mail_wrap #mail_body {width: 0; height: 0; position: absolute; left: 0; top: 0; bottom: 0; right: 0; margin: auto; border-bottom: 35px solid #320064; border-left: 50px solid #320064; border-right: 50px solid #320064; border-top: 35px solid transparent; border-radius: 10px; z-index: 2;}
+        #main_4 #mail_wrap #mail_head {width: 0; height: 3px; position: absolute; left: 0; top: 0; bottom: 0; right: 0; margin: auto; border-top: 35px solid #320064; border-bottom: 35px solid transparent; border-left: 50px solid transparent; border-right: 50px solid transparent; z-index: 3; border-radius: 10px; transform-origin: top;}
+        #main_4 #mail_wrap #mail_inner {width: 50px; height: 60px; position: absolute; left: 0; top: 0; bottom: 0; right: 0; margin: auto; border-radius: 5px; z-index: 1; background-color: #fff; border: 1px solid #000;}
+        #main_4 #mail_wrap #mail_inner .inner_line {width: 70%; height: 1px; background-color: #000; margin-left: 15%; margin-top: 20%;}
+        
+        #main_4 #call_wrap {width: 150px; height: 150px; margin: 3vh auto; border-radius: 10%; text-align: center; cursor: pointer; border: 1px solid #fff;}
+        #main_4 #call_wrap img {width: 150px; height: 150px;}
+        #main_4 #call_wrap:hover img {animation: seesaw 1s 1}
+        @keyframes seesaw {
+            20%,60% {transform: rotate(-5deg)}
+            40%,80% {transform: rotate(10deg)}
+            100% {transform: rotate(0)}
+        }
+        
+        /*
+        @-webkit-keyframes typing {from {width: 0;}}
+        @-webkit-blink-caret {50% {border-color: transparent;}}
+        .main_box #title {-webkit-animation: typing 2s steps(21, end), blink-caret .5s step-end infinite; overflow: hidden;}
+        */
+        
+        #main_5 {background-color: rgba(255,255,255,0.9);}
+        #main_5 .split {position: absolute; top: 0; left: 0; width: 50%; height: 100%; padding: 5% 0; text-align: center;}
+        #main_5 .split+.split {left: 50%;}
+        #main_5 img {width: 30%; border-radius: 0%;}
+        #main_5 ul {transform-origin: 0 50%; transform: scaleX(0); transition: .5s;}
+        #main_5 ul li {text-align: left; font-size: 1rem; margin-bottom: 3vh; color: #555;}
+        #main_5 ul li:first-child {font-size: 1.2rem; color: #aaa; line-height: 1; font-family: cursive;}
+        #main_5 ul li::first-letter {color: #320064;}
+        #main_5 .move_window {padding: 10px; padding-top: 30px; width: 25%; line-height: 1.5;}
+        /*
+        #main_5 li:before {position: absolute; content: ''; width: 3px; height: 10px; background-color: #320064; margin: 1.1% 0 0 -1%; border-radius: 50%;}
+        #main_5 li:after {content: ''; width: 30px; height: 30px; background-size: contain; position: absolute; background-repeat: no-repeat; opacity: .15;}
+        #main_5 li:nth-child(4):after {background-image: url(images/icecream.png);}
+        #main_5 li:nth-child(5):after {background-image: url(images/pepper.png); width: 35px; height: 35px; margin-top: 8px;}
+        #main_5 li:nth-child(6):after {background-image: url(images/coffee.png); width: 35px; height: 35px; margin-top: 3px;}
+        */
+        
+        /* 반응형 설정 시작 */
+        @media only screen and (max-width: 1281px) {
+            .main_box >#title {width: 30vw;}
+        }
+        @media only screen and (max-width: 769px) {
+            #main_5 ol li {width: 50%;}
+            #main_4 #call_wrap {width: 100px; height: 100px;}
+            #main_4 #call_wrap img {width: 75px; height: 75px;}
+            #main_4 #mail_wrap {width: 100px; height: 100px;}
+            #main_4 #mail_wrap #mail_body {border-bottom: 17px solid #fff; border-left: 25px solid #fff; border-right: 25px solid #fff; border-top: 17px solid transparent;}
+            #main_4 #mail_wrap #mail_head {border-top: 17px solid #fff; border-bottom: 17px solid transparent; border-left: 25px solid transparent; border-right: 25px solid transparent;}
+            #main_4 #mail_wrap #mail_inner {width: 25px; height: 30px;}
+            .main_box >#title {width: 40vw;}
+        }
+        @media only screen and (max-width: 541px) {
+            #main_5 ol li {width: 45%; height: 22%; font-size: .5rem;}
+            #main_2 li {font-size: 1.2rem;}
+            #main_2 li span i:nth-child(1) {font-size: 4rem; width: 50%; left: 23%;}
+            #main_2 li span i:nth-child(2) {font-size: 2rem; line-height: 3.8rem;}
+            #main_2 #sub_title {margin-left: -10vw;}
+            #main_2 .ul_item {overflow-y: scroll;}
+            #main_2 .item_list {width: 50%;}
+            #main_2 #item_4 .item_list {width: 100%;}
+            .main_box >#title {width: 50vw;}
+        }
+        /* 반응형 설정 끝 */
+    </style>
+    
+</head>
+<body>
+    <div class="move_window" id="navigation">
+        <div id="nav_wrap">
+            <div id="window_title">■ Navigation</div>
+            <a href="#main_1"><img src="images/icon_logo.png"></a>
+            <div id="nav_toggle">
+                <div class="nav_toggle_line"></div>
+                <div class="nav_toggle_line"></div>
+                <div class="nav_toggle_line"></div>
+            </div>
+            <ul>
+                <li>ME<div id="nav_li_line"></div></li>
+                <li>WORK<div id="nav_li_line"></div></li>
+                <li>CALL<div id="nav_li_line"></div></li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        #navigation {position: fixed; top: 0; left: 10px; z-index: 10;}
+        #navigation #nav_wrap {width: 70px; height: 100px; padding: 1vw; overflow: hidden; transition: 1s;}
+        #navigation img {width: 70px; height: 70px; cursor: pointer;}
+        #navigation #nav_toggle {width: 30px; height: 30px; margin: 0 auto; position: relative; overflow: hidden; cursor: grab;}
+        #navigation #nav_toggle .nav_toggle_line {width: 80%; height: 2px; background-color: #000; position: absolute; left: 10%; transition: .5s; transform-origin: 0 50%;}
+        #navigation #nav_toggle .nav_toggle_line:nth-child(1) {top: 23%;}
+        #navigation #nav_toggle .nav_toggle_line:nth-child(2) {top: 48.5%;}
+        #navigation #nav_toggle .nav_toggle_line:nth-child(3) {top: 75%;}
+        #navigation li {font-size: 1.2rem; height: 5vh; line-height: 5vh; transform-origin: 50% 0; transform: scaleY(0); transition: .5s .2s; cursor: pointer;}
+        #navigation li::first-letter {color: #320064;}
+        #navigation li #nav_li_line {width: 10px; height: 2px; background-color: #000; margin-top: -10px; transition: .5s;}
+        #navigation li:hover #nav_li_line {width: 135%;}
+        
+        #main_1 #introduce {position: absolute; left: 1%; bottom: 1%; font-size: 1.2rem; line-height: 2; padding: 1%; height: 70px;}
+        #main_1 #introduce a {border: 1.5px solid #320064; border-radius: 5px; padding: 3px 10px; transition: .5s;}
+        #main_1 #introduce a:hover {background-color: #777; color: #fff;}
+        
+        #window_title {position: absolute; top: 0; left: 0; width: 100%; text-indent: 5px; border-bottom: 1px solid #000; font-size: .7rem; background-color: #789; text-align: left;}
+        #window_title::first-letter {color: #320064;}
+        .move_window {background-color: #fff; border: 1px solid #777; border-radius: 0 0 20px 20px; position: absolute;}
+    </style>
+    <script>
+        $('#navigation img').click(function() {
+            $("html,body").stop().animate({scrollTop: '0px'}, 800);
+        });
+        $('#navigation li:nth-child(1)').click(function() {
+            $("html,body").stop().animate({scrollTop: $('#main_5').offset().top}, 800);
+        });
+        $('#navigation li:nth-child(2)').click(function() {
+            $("html,body").stop().animate({scrollTop: $('#main_2').offset().top}, 800);
+        });
+        $('#navigation li:nth-child(3)').click(function() {
+            $("html,body").stop().animate({scrollTop: $('#main_4').offset().top}, 800);
+        });
+        var nav_toggle = 0;
+        $('#navigation #nav_toggle').click(function() {
+            if( nav_toggle == 0 ) {
+                $('#navigation #nav_toggle .nav_toggle_line:nth-child(1)').css({'transform':'rotate(45deg)'});
+                $('#navigation #nav_toggle .nav_toggle_line:nth-child(2)').css({'transform':'translateX(-120%)'});
+                $('#navigation #nav_toggle .nav_toggle_line:nth-child(3)').css({'transform':'rotate(-45deg)'});
+                nav_toggle = 1;
+                
+                $('#navigation #nav_wrap').css({'height':'250px'});
+                $('#navigation li').css({'transform':'scaleY(1)'});
+            } else {
+                $('#navigation #nav_toggle .nav_toggle_line').css({
+                    'transform':'rotate(0) translateX(0)'});
+                nav_toggle = 0;
+                
+                $('#navigation #nav_wrap').css({'height':'100px'});
+                $('#navigation li').css({'transform':'scaleY(0)'});
+            }
+        });
+    </script>
+    
+    <div id="main">
+        <div class="main_box" id="main_1">
+            <!--
+            <svg id="cloud" viewBox="0 0 277.58 182.61"><path d="M896,552.51s-50,25.07-68-22.39c0,0-16-34.85,31.33-51.15,0,0-18.67-20.3-2-43,0,0,23.33-30.67,58,0,0,0,1.33-37.35,50-37.33,0,0,28.67-.09,38,41.33,0,0,32-22,45.33,11.67,0,0,60.67-23.13,51.34,66.27,0,0-9.34,58.6-64.67,33.33,0,0-22,32.1-48,.75C987.33,552,936.66,613,896,552.51Z" transform="translate(-824.39 -397.67)" style="fill:#fff;stroke:#5cd3ff;stroke-miterlimit:10;stroke-width:2px"/><circle cx="179.3" cy="111.36" r="3.69" style="fill:#5cd3ff"/><circle cx="228.27" cy="111.36" r="3.69" style="fill:#5cd3ff"/><line x1="175.6" y1="124.33" x2="182.99" y2="124.33" style="fill:none;stroke:#5cd3ff;stroke-miterlimit:10"/><line x1="224.58" y1="123" x2="231.96" y2="123" style="fill:none;stroke:#5cd3ff;stroke-miterlimit:10"/><path d="M1003.69,522S1001,534.67,1027,534.67c0,0,25.66,1.1,25.66-14" transform="translate(-824.39 -397.67)" style="fill:none;stroke:#5cd3ff;stroke-miterlimit:10"/><ellipse cx="168.44" cy="119.67" rx="7.17" ry="2.17" style="fill:#fcf"/><ellipse cx="239.44" cy="119.67" rx="7.17" ry="2.17" style="fill:#fcf"/></svg>
+            <style>
+                svg#cloud {width: 20%; height: 20%; animation: svg_ani_cloud_move 30s infinite;}
+                @keyframes svg_ani_cloud_move {
+                    10% {top: 7%;}
+                    20% {top: 13%;}
+                    30% {top: 7%;}
+                    45% {top: 13%; transform: rotateY(0);}
+                    50% {top: 10%; left: 80%; transform: rotateY(180deg);}
+                    60% {top: 7%;}
+                    70% {top: 13%;}
+                    80% {top: 7%;}
+                    90% {top: 13%; transform: rotateY(180deg);}
+                    100% {top: 10%; left: 10%; transform: rotateY(0);}
+                }
+                /*
+                svg#cloud * {
+                    stroke-dasharray: 1500;
+                    stroke-dashoffset: 1500;
+                    animation: svg_ani_cloud 5s 0s ease-in-out infinite;
+                }
+                @keyframes svg_ani_cloud {
+                    0% {fill: none;}
+                    100% {stroke-dashoffset: 0; fill: auto;}
+                }*/
+            </style>
+            
+            
+            <div id="ground">
+                <div class="ground"></div>
+                <div class="ground"></div>
+                <div class="ground"></div>
+                <div class="ground"></div>
+            </div>
+            
+            <svg viewBox="0 0 241.44 200.88" style="width: 20%; height: 20%;" id="character"><defs><radialGradient id="a" cx="721.63" cy="388.41" r="22.12" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset="0.37" stop-color="#fdfdfd"/><stop offset="0.51" stop-color="#f6f6f6"/><stop offset="0.6" stop-color="#ebebeb"/><stop offset="0.68" stop-color="#dadada"/><stop offset="0.75" stop-color="#c4c4c4"/><stop offset="0.8" stop-color="#a8a8a8"/><stop offset="0.86" stop-color="#888"/><stop offset="0.91" stop-color="#626262"/><stop offset="0.95" stop-color="#373737"/><stop offset="0.99" stop-color="#090909"/><stop offset="1"/></radialGradient><radialGradient id="b" cx="71" cy="70" r="69.5" gradientUnits="userSpaceOnUse"><stop offset="0.36" stop-color="#fff"/><stop offset="0.6" stop-color="#fdfdfd"/><stop offset="0.69" stop-color="#f6f6f6"/><stop offset="0.75" stop-color="#ebebeb"/><stop offset="0.8" stop-color="#dadada"/><stop offset="0.84" stop-color="#c4c4c4"/><stop offset="0.88" stop-color="#a8a8a8"/><stop offset="0.91" stop-color="#888"/><stop offset="0.94" stop-color="#626262"/><stop offset="0.97" stop-color="#373737"/><stop offset="1" stop-color="#090909"/><stop offset="1"/></radialGradient></defs><g style="isolation:isolate"><ellipse cx="99.33" cy="106.33" rx="70" ry="69" style="opacity:0.30000000000000004;mix-blend-mode:multiply"/><g style="opacity:0.30000000000000004;mix-blend-mode:multiply"><path d="M713.78,462.47l-13-15.37,5.39-4.47a1.8,1.8,0,0,0,.25-2.5l-5-6.15-6.2,5.74,6.2-5.74L685.5,414.5,678,420.23l-1.47-1.73-27,23,.19.24-7.25,5.51,22.86,26.84a1.88,1.88,0,0,0,2.62.23l4.86-4,12.9,16a3,3,0,0,0,4.18.53c1.75-1.29,4.33-3.24,7.31-5.61L673.5,451.5l23.67,29.67c3-2.36,6.3-5.14,9.61-8.13L683.5,445.5,706.78,473c2.36-2.12,4.69-4.33,6.86-6.57A3,3,0,0,0,713.78,462.47Zm-53.18,6.1,6.15-5.74Z" transform="translate(-515.5 -286.5)"/><line x1="145.1" y1="182.07" x2="151.25" y2="176.33" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0px"/><line x1="179.67" y1="153.22" x2="185.87" y2="147.48" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0px"/><line x1="185.87" y1="147.48" x2="185.87" y2="147.48" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0px"/><line x1="181.67" y1="194.67" x2="181.67" y2="194.67" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0px"/><line x1="181.67" y1="194.67" x2="158" y2="165" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0px"/><line x1="191.28" y1="186.54" x2="191.29" y2="186.54" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0px"/><line x1="168" y1="159" x2="191.28" y2="186.54" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0px"/></g><path d="M641.44,446.25l22.86,26.84a1.88,1.88,0,0,0,2.62.23l38.22-31.69a1.8,1.8,0,0,0,.25-2.5L684.5,413.5" transform="translate(-515.5 -286.5)" style="fill:#f9f4ef;stroke:#000;stroke-miterlimit:10"/><path d="M648.5,440.5l36.18,44.75a3,3,0,0,0,4.18.53c4.7-3.47,15.46-11.72,23.78-20.31a3,3,0,0,0,.14-4l-37.28-44" transform="translate(-515.5 -286.5)" style="fill:#f9f4ef;stroke:#000;stroke-miterlimit:10"/><line x1="144.1" y1="181.07" x2="150.25" y2="175.33" style="fill:none;stroke:#000;stroke-miterlimit:10"/><line x1="178.67" y1="152.22" x2="184.87" y2="146.48" style="fill:none;stroke:#000;stroke-miterlimit:10"/><line x1="180.67" y1="193.67" x2="157" y2="164" style="fill:none;stroke:#000;stroke-miterlimit:10"/><line x1="190.29" y1="185.54" x2="167" y2="158" style="fill:none;stroke:#000;stroke-miterlimit:10"/><path d="M649.25,439.83l14,17.42s8.5,13,19.75,7.5a22,22,0,0,0,7.68-6.5l.05-.06c1.57-2.14,4.33-1,4.1,1.64-.42,5.06.76,12.93,7.67,11.92,0,0,7.25-2,0-16.5,0,0,0,5.25,6.75,1.75L695.5,441.25" transform="translate(-515.5 -286.5)" style="opacity:0.30000000000000004;mix-blend-mode:multiply"/><path d="M646,451.25s26.5-10.75,43-33l-8-11L637.5,441.5Z" transform="translate(-515.5 -286.5)" style="opacity:0.30000000000000004;mix-blend-mode:multiply"/><path d="M690.68,455.15s1.72,2.77,3.82,6.35c1.66,2.83,2,7,6,7,0,0,7.09.66,3-11.67l-7-9.33" transform="translate(-515.5 -286.5)" style="fill:#6e93ae"/><path d="M695.18,462.86s2.16-3.95,9-3.9c0,0,2.25,7-1.46,9C702.71,468,697.36,470.73,695.18,462.86Z" transform="translate(-515.5 -286.5)" style="fill:#fff"/><path d="M690.68,455.15s1.72,2.77,3.82,6.35c1.66,2.83,2,7,6,7,0,0,7.09.66,3-11.67l-7-9.33" transform="translate(-515.5 -286.5)" style="fill:none;stroke:#000;stroke-miterlimit:10"/><path d="M690.68,455.15s1.72,2.77,3.82,6.35c1.66,2.83,2,7,6,7,0,0,7.09.66,3-11.67l-7-9.33" transform="translate(-515.5 -286.5)" style="opacity:0.2;mix-blend-mode:multiply"/><path d="M628.5,435.5s2,10,15,11a16,16,0,0,0,8.52-1.1,2.4,2.4,0,0,1,2.8.53c2.91,3.15,10,10.68,14.68,14.57,0,0,7,3,13,0A46.12,46.12,0,0,0,692,454a4.35,4.35,0,0,1,1.68-1l.06,0a6.64,6.64,0,0,1,6.83,1.93,7.49,7.49,0,0,0,2,1.6,3.86,3.86,0,0,0,5.44-2.82,6.34,6.34,0,0,0,.11-.81,8.26,8.26,0,0,0-2.56-6.4c-1.54-1.5-3.83-3.38-6.11-3.95,0,0-10-3-18,7l10-14-10-11.88a1.6,1.6,0,0,1,0-2.11c1.85-2.05,5.54-7.16,4-14,0,0-2-9-8-10" transform="translate(-515.5 -286.5)" style="fill:#6e93ae"/><path d="M664,447s1,5,9,9l15.52-16.32S685,434,681,431" transform="translate(-515.5 -286.5)" style="fill:#fff"/><path d="M698.19,453.2s-.15-7.3,6.33-7.75c0,0,5.47,4.12,3,9.84,0,0-2.16,2.13-4.33,1.42C703.17,456.71,699.38,453.4,698.19,453.2Z" transform="translate(-515.5 -286.5)" style="fill:#fff"/><path d="M628.5,435.5s2,10,15,11a16,16,0,0,0,8.52-1.1,2.4,2.4,0,0,1,2.8.53c2.91,3.15,10,10.68,14.68,14.57,0,0,7,3,13,0A46.12,46.12,0,0,0,692,454a4.35,4.35,0,0,1,1.68-1l.06,0a6.64,6.64,0,0,1,6.83,1.93,7.49,7.49,0,0,0,2,1.6,3.86,3.86,0,0,0,5.44-2.82,6.34,6.34,0,0,0,.11-.81,8.26,8.26,0,0,0-2.56-6.4c-1.54-1.5-3.83-3.38-6.11-3.95,0,0-10-3-18,7l10-14-10-11.88a1.6,1.6,0,0,1,0-2.11c1.85-2.05,5.54-7.16,4-14,0,0-2-9-8-10" transform="translate(-515.5 -286.5)" style="fill:none;stroke:#000;stroke-miterlimit:10"/><path d="M661.16,452.59s11.48-14.56,25.91-22.33l-3-3.5s-12.61.74-14.61,8.74c0,0-10.31,1.31-11.66,13.65Z" transform="translate(-515.5 -286.5)" style="fill:#fff;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/><path d="M667.33,458.59S678.5,443.5,691.5,435.5c0,0,4.36,4.19,3.68,6.59,0,0-10.68.41-13.68,8.41,0,0-1,7,1,11a13.05,13.05,0,0,1-8,1S669.15,461.68,667.33,458.59Z" transform="translate(-515.5 -286.5)" style="fill:#fff;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/><path d="M634.49,433.15S650,446,668,430c0,0,16.54-11,7.27-29L658,383l-35,31" transform="translate(-515.5 -286.5)" style="fill:#6e93ae;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/><path d="M628.5,437.5l11-8s1-5-8-15l4-7,21-15,9,8s3,5,6,3l9-6S673.56,377,654,374.73L617.5,414.5S610.5,425.5,628.5,437.5Z" transform="translate(-515.5 -286.5)" style="fill:#2c1e11"/><circle cx="136" cy="131" r="4" style="fill:#fff;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/><circle cx="142.63" cy="126.25" r="4" style="fill:#fff;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/><path d="M648.49,413.89l6-4.39a6.93,6.93,0,0,1,0,5A9.84,9.84,0,0,1,648.49,413.89Z" transform="translate(-515.5 -286.5)" style="fill:#37291e;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/><path d="M647.5,410.5s4,7-3,13c0,0-8,8-16,0,0,0-7.58-8.63,1-16,0,0,7-7,15,0l4-3s-4-10,4-15c0,0,9-5,15,3,0,0,6,8-1,14,0,0-7,7-15,1Z" transform="translate(-515.5 -286.5)" style="fill:#fff;stroke:#000;stroke-linecap:round;stroke-linejoin:round"/><circle cx="121" cy="129" r="8" style="fill:#37291d;stroke:#000;stroke-miterlimit:10"/><circle cx="143" cy="112" r="8" style="fill:#37291d;stroke:#000;stroke-miterlimit:10"/><path d="M700.5,408.5s1,13,20,16a41.5,41.5,0,0,0,12,0s20-1,24-23a68.52,68.52,0,0,0,.42-9.48,19.75,19.75,0,0,0-2.84-9.67A22.59,22.59,0,0,0,737.5,371.5s-9-1-13,0c0,0-18,3-23,21C701.5,392.5,699.5,401.5,700.5,408.5Z" transform="translate(-515.5 -286.5)" style="opacity:0.30000000000000004;mix-blend-mode:multiply"/><path d="M698.5,406.5s1,13,20,16a41.5,41.5,0,0,0,12,0s20-1,24-23a68.52,68.52,0,0,0,.42-9.48,19.75,19.75,0,0,0-2.84-9.67A22.59,22.59,0,0,0,735.5,369.5s-9-1-13,0c0,0-18,3-23,21C699.5,390.5,697.5,399.5,698.5,406.5Z" transform="translate(-515.5 -286.5)" style="fill:#fff;stroke:#b58b50;stroke-linecap:round;stroke-linejoin:round"/><path d="M710.53,405.5s13.23,8.63,25.35.57h0s6.21-3,8.17-16h0a18.82,18.82,0,0,1-5.55,18.14S722.06,420,710.53,405.5Z" transform="translate(-515.5 -286.5)" style="fill:#6896b7"/><path d="M708.5,398.5s0,12,13,14c0,0,11,2,16-4,0,0,6.14-2.73,7.15-11a17.37,17.37,0,0,0-2.49-11.32,15.45,15.45,0,0,0-13.66-7.67h-2.86a18.89,18.89,0,0,0-8.5,1.92,15.39,15.39,0,0,0-7.6,8.18,8,8,0,0,0-.51,1.61A45,45,0,0,0,708.5,398.5Z" transform="translate(-515.5 -286.5)" style="fill:none;stroke:#b58b50;stroke-linecap:round;stroke-linejoin:round"/><path d="M743.35,388.43h0C750,403.61,740,410.5,740,410.5c-21.12,11.5-29.47-5-29.47-5s5.21,11,22.4,6.14c0,0,8.08-1.14,11.07-11.14C744,400.5,745.7,394.23,743.35,388.43Z" transform="translate(-515.5 -286.5)" style="opacity:0.30000000000000004;mix-blend-mode:multiply"/><path d="M708.5,398.5s0,12,13,14c0,0,11,2,16-4,0,0,6.14-2.73,7.15-11a17.37,17.37,0,0,0-2.49-11.32,15.45,15.45,0,0,0-13.66-7.67h-2.86a18.89,18.89,0,0,0-8.5,1.92,15.39,15.39,0,0,0-7.6,8.18,8,8,0,0,0-.51,1.61A45,45,0,0,0,708.5,398.5Z" transform="translate(-515.5 -286.5)" style="opacity:0.30000000000000004;mix-blend-mode:multiply;fill:url(#a)"/><circle cx="223" cy="121" r="3" style="fill:#ffef35"/><path d="M741.25,414.44a2.51,2.51,0,0,1-2-1,4.37,4.37,0,0,1-.73-2.36,2.25,2.25,0,0,1,.7-1.94,1.6,1.6,0,0,1,1-.27,4.39,4.39,0,0,1,3.12,1.63,2.5,2.5,0,0,1-.56,3.49A2.41,2.41,0,0,1,741.25,414.44Z" transform="translate(-515.5 -286.5)" style="fill:#fff"/><path d="M740.15,409.34h0a3.85,3.85,0,0,1,2.71,1.43,2,2,0,0,1,.36,1.48,2,2,0,0,1-.8,1.31,2,2,0,0,1-1.17.38,2,2,0,0,1-1.63-.82c-.72-1-.92-3-.14-3.6a1.11,1.11,0,0,1,.67-.18m0-1a2.1,2.1,0,0,0-1.26.37c-1.34,1-1,3.66-.07,5a3,3,0,1,0,4.85-3.53,4.84,4.84,0,0,0-3.52-1.84Z" transform="translate(-515.5 -286.5)" style="fill:#b58b50"/><path d="M742.58,409.26c-1.24,0-2.66-.5-3-1.45-.39-1.21,1.13-3,2.56-3.46a2.27,2.27,0,0,1,.77-.13,2.5,2.5,0,0,1,.77,4.88A3.54,3.54,0,0,1,742.58,409.26Z" transform="translate(-515.5 -286.5)" style="fill:#fff"/><path d="M742.94,404.72h0a2,2,0,0,1,.62,3.91,3.23,3.23,0,0,1-1,.13c-1.2,0-2.29-.49-2.49-1.11-.3-.92,1-2.44,2.23-2.83a2.17,2.17,0,0,1,.62-.1m0-1a3,3,0,0,0-.93.15c-1.57.51-3.39,2.51-2.88,4.09.39,1.2,2,1.8,3.45,1.8a4.42,4.42,0,0,0,1.29-.18,3,3,0,0,0-.93-5.86Z" transform="translate(-515.5 -286.5)" style="fill:#b58b50"/><path d="M735.75,414.44a2.41,2.41,0,0,1-1.46-.48,2.5,2.5,0,0,1-.56-3.49,4.39,4.39,0,0,1,3.12-1.63,1.6,1.6,0,0,1,1,.27,2.25,2.25,0,0,1,.7,1.94,4.37,4.37,0,0,1-.73,2.36A2.51,2.51,0,0,1,735.75,414.44Z" transform="translate(-515.5 -286.5)" style="fill:#fff"/><path d="M736.85,409.34h0a1.11,1.11,0,0,1,.67.18c.78.56.58,2.6-.14,3.6a2,2,0,0,1-1.63.82,2,2,0,0,1-1.17-.38,2,2,0,0,1-.8-1.31,2,2,0,0,1,.36-1.48,3.85,3.85,0,0,1,2.71-1.43m0-1a4.84,4.84,0,0,0-3.52,1.84,3,3,0,0,0,4.85,3.53c1-1.34,1.27-4-.07-5a2.1,2.1,0,0,0-1.26-.37Z" transform="translate(-515.5 -286.5)" style="fill:#b58b50"/><path d="M734.42,409.26a3.54,3.54,0,0,1-1.13-.16,2.49,2.49,0,0,1-1.46-1.24,2.5,2.5,0,0,1,2.23-3.64,2.27,2.27,0,0,1,.77.13c1.43.46,2.95,2.25,2.56,3.46C737.08,408.76,735.66,409.26,734.42,409.26Z" transform="translate(-515.5 -286.5)" style="fill:#fff"/><path d="M734.06,404.72h0a2.17,2.17,0,0,1,.62.1c1.18.39,2.53,1.91,2.23,2.83-.2.62-1.29,1.11-2.49,1.11a3.23,3.23,0,0,1-1-.13,2,2,0,0,1,.62-3.91m0-1a3,3,0,0,0-.93,5.86,4.42,4.42,0,0,0,1.29.18c1.44,0,3.06-.6,3.45-1.8.51-1.58-1.31-3.58-2.88-4.09a3,3,0,0,0-.93-.15Z" transform="translate(-515.5 -286.5)" style="fill:#b58b50"/><path d="M738.5,407c-1.26,0-2.5-2-2.5-3.5a2.5,2.5,0,0,1,5,0C741,405,739.76,407,738.5,407Z" transform="translate(-515.5 -286.5)" style="fill:#fff"/><path d="M738.5,401.5a2,2,0,0,1,2,2c0,1.24-1,3-2,3s-2-1.76-2-3a2,2,0,0,1,2-2m0-1a3,3,0,0,0-3,3c0,1.66,1.34,4,3,4s3-2.34,3-4a3,3,0,0,0-3-3Z" transform="translate(-515.5 -286.5)" style="fill:#b58b50"/><path d="M654.94,374.85c7.73-.12,23.42,15.13,23.15,18-2.46,26-16.49,54.05-40,52.51-3.18-.21-5.23-4.52-9.77-7.67-14-9.75-12.17-18.67-12.17-18.67-5.58-10.75-10.91-20.5-15.87-20.5-38.66,0-62.24,22.61-62.24-15.5s31.34-69,70-69S616.84,375.43,654.94,374.85Z" transform="translate(-515.5 -286.5)" style="opacity:0.30000000000000004;mix-blend-mode:multiply"/><ellipse cx="71" cy="70" rx="70" ry="69" style="fill:#f9ce37;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/><ellipse cx="71" cy="70" rx="70" ry="69" style="opacity:0.2;mix-blend-mode:multiply;fill:url(#b)"/><path d="M633.22,407.87s-42.64-61.4-103.93-91.14" transform="translate(-515.5 -286.5)" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/><path d="M654,343.08S584.54,328,525.24,391.42" transform="translate(-515.5 -286.5)" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/><path d="M575.09,424.47s-3.91-76.34,28.85-134.76" transform="translate(-515.5 -286.5)" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"/></g></svg>
+            <style>
+                svg#character * {
+                    stroke-dasharray: 700;
+                    stroke-dashoffset: 700;
+                    animation: svg_ani_character 5s 0s ease-in-out infinite;
+                }
+                @keyframes svg_ani_character {
+                    0% {fill: none;}
+                    100% {stroke-dashoffset: 0; fill: auto;}
+                }
+            </style>
+            -->
+            <!--
+            <div style="border-radius: 50%; width: 460px; height: 460px; background-image: url(images/giphy.gif); background-size: cover; position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%);"></div>
+            
+			<div class="count-particles">
+			  <span class="js-count-particles"></span>
+			</div>
+
+			<div id="particles-js">
+			</div>
+            -->
+            <img src="images/namecard.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); box-shadow: 20px 20px 30px rgba(0,0,0,.5); z-index: 1;" class="move_window">
+            <div class="title_line" id="title_top"></div>
+            <div class="title_line" id="title_right"></div>
+            <div class="title_line" id="title_bottom"></div>
+            <div class="title_line" id="title_left"></div>
+            <div id="text"><!--
+                <div class="moving_text">웹</div>
+                <div class="moving_text">디</div>
+                <div class="moving_text">자</div>
+                <div class="moving_text">이</div>
+                <div class="moving_text">너&nbsp;</div>
+                <div class="moving_text">서</div>
+                <div class="moving_text">기</div>
+                <div class="moving_text">정</div>-->
+                <br>
+                <div class="moving_text typewrite" data-period="2000" data-type='[ "I just hope my portfolio...", "more cents than the others." ]'>
+                    <!--made by vipul mirajkar thevipulm.appspot.com-->
+                    <span class="wrap"></span>
+                </div>
+                <div>_</div>
+            </div> 
+            <div class="move_window" id="introduce" style="display: none">
+                <div id="window_title">■ Information</div>
+                <div>포트폴리오 요약</div>
+                <!--<a href="introduce.jpg" target="_blank">jpg.새창열기</a>
+                <br>-->
+                <a href="introduce.pdf" download>pdf.다운로드</a>
+            </div>
+            <div class="move_window" style="position: absolute; left: 35%; top: 50%; width: 200px; text-align: center; padding: 10px;">
+                <div id="window_title">■ Joker</div>
+                <img src="images/joker.jpg" width="150px">
+                <div style="font-size: .9rem;">저를 웹디라고 소개해줄래요?</div>
+            </div>
+        </div>
+        
+        <div class="main_box" id="main_5">
+            <div id="title">이게 저에요!</div>
+            <div class="title_line" id="title_top"></div>
+            <div class="title_line" id="title_right"></div>
+            <div class="title_line" id="title_bottom"></div>
+            <div class="title_line" id="title_left"></div>
+            <div id="background"></div>
+            <div class="split">
+                <img src="images/profile.png" style="margin-top: 20%;">
+            </div>
+            <div class="split">
+            <ol>
+                <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="far fa-images fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div>
+                    <p id="list_title">포토샵</p>
+                    <p id="list_text">이미지 편집, 보정, 합성, 상세페이지 제작</p></div>
+                </li>
+                <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-draw-polygon fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div>
+                    <p id="list_title">일러스트</p>
+                    <p id="list_text">로고제작, 상품디자인, 캐릭터 제작</p></div>
+                </li>
+                <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-laptop-code fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div>
+                    <p id="list_title">홈페이지 제작</p>
+                    <p id="list_text">HTML5, CSS3, Javascript, jQuery 사용</p></div>
+                </li>
+                <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-store fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div>
+                    <p id="list_title">cafe24 활용</p>
+                    <p id="list_text">쇼핑몰 관리/편집/상품등록</p></div>
+                </li>
+                <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-camera-retro fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div>
+                    <p id="list_title">DLSR 활용</p>
+                    <p id="list_text">상품 촬영 및 보정 가능</p></div>
+                </li>
+                <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-search-dollar fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div>
+                    <p id="list_title">마케팅</p>
+                    <p id="list_text">아이템발굴, 시장분석, 판매전략 수립 가능</p></div>
+                </li>
+                <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-mobile-alt fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <div>
+                    <p id="list_title">UI/UX</p>
+                    <p id="list_text">앱디자인 가능</p></div>
+                </li>
+            </ol>
+            </div>
+            <div class="move_window" style="left: 23%; top: 10%; width: auto;">
+                <div id="window_title">■ Drug</div>
+                <img src="images/drug.jpg" style="width: 400px;">
+            </div>
+            <div class="move_window" style="left: 33%; top: 10%;">
+                <div id="window_title">■ Goodbye</div>
+                <ul>
+                    <li>전자공학은 버렸어요. (진지함)</li>
+                    <li>대학은 금오공대를 졸업했어요. 전자공학부 전자IT융합학과였는데, 그냥 임베디드라고 봐주시면 될 것 같아요. 저는 어릴 때부터 여성스러웠어요. 실사주의의 서양화를 그리는 것을 좋아했고, 또 색종이로 귀걸이를 만들거나, 종이띠로 된 이름표를 만들어서 연필에 붙이고 다니기도 했어요. 책도 심리테스트 이런 것들을 좋아했고요. 이런 걸 무의식적으로 피하기 시작한 건, 중학교 때 여자친구들이 이를 지적했을 때부터에요. 그러다 보니 미대 진학을 무의식적으로 꺼렸고, 결국 성적에 맞춰 전자공학을 선택했어요. 어처구니없지만 수능 때 수리는 나형 3등급, 물리는 안봤어요. 이런 제가 공대라니. 그래서 고생했죠. 1학년 때 전공과목 수업을 전혀 이해 못해서 C 받은 기억이 있네요. 그래도 프로그래밍엔 자신있어서 나름 학점방어에는 성공했어요. 하지만 졸업하고 나니 또 고생했어요. 전자는 영 못하겠고, 취업은 안되고, 그렇다고 공무원 공부하는 건 너무 싫어서, 이 회사 저 회사 기웃거렸어요. 발전소도 다녀보고, 전자부품 기술영업도 하고. 그땐 그래도 전자공학을 포기하면 안되는 줄 알았는데, 막상 30살이 되니 뭔가 해탈한 기분이 들면서 내려놓게 되더라고요. 그래서 짜잔, 디자이너가 되기로 결심하였습니다! 그렇게 웹디자인 학원을 다니면서, 본격적으로 포토샵과 일러스트도 익혔어요. 사실 웹디가 아니라 진짜 디자인 학원을 다니고 싶었는데, 포트폴리오가 없으니 안받아주더라구요. 아무튼 이렇게 디자이너로서 한발짝 나아갔네요.</li>
+                </ul>
+            </div>
+            <div class="move_window" style="left: 60%; top: 10%;">
+                <div id="window_title">■ Dream</div>
+                <ul>
+                    <li>꿈은 시각디자이너에요. (진지함)</li>
+                    <li>초등학교 때부터 독학으로 만화를 그리면서 디자인도 겸사겸사 공부하긴 했지만, 본격적으로 디자인을 공부한 건 웹디 학원을 다녔을 때가 처음이에요. 그렇지만 저는 이 학원에서 디자인을 배웠다곤 생각하지 않아요. 그저 툴을 익힌 것 뿐이죠. 디자인 실력은 어디 내놓을 수준은 아닌 것 같아요. 그래서 학원을 수료한 지금도 유튜브를 통해 디자인을 독학하고 있어요. 사실 학원을 막 수료했을 땐 웹디든 퍼블리셔든 뭐든 취업되는대로 해야겠다고 생각하기도 했지만, 지금은 달라요. 그랬다간 20대의 저를 답습할 것 같아서, 코딩은 제가 잘했던 것, 디자인은 제가 좋아하는 것이라고 못박아두고, 디자이너로서의 길만 걷자고 다짐하고 있어요. 보통 대기업 자소서에 잘 나오는 단골멘트가 있죠? 5년 후의 꿈이라던가 목표. 저는 그저 제가 좋아하는 디자인을 그때도 하고 있고, 그때도 즐기고 있다면, 그걸로 만족해요. 아, 목표라면 한가지, 디자인 학위를 취득하고 싶어요. 그럼 진짜 디자이너가 되겠죠?</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="main_box" id="main_2">
+            <div id="title">작품전시회
+                <div id="sub_title"></div>
+            </div>
+            <div class="title_line" id="title_top"></div>
+            <div class="title_line" id="title_right"></div>
+            <div class="title_line" id="title_bottom"></div>
+            <div class="title_line" id="title_left"></div>
+            <div id="ul_wrap">
+                <ul>
+                    <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-draw-polygon fa-stack-1x fa-inverse"></i>
+                    </span>
+                        <div class="ul_text">일러스트
+                            <div id="text_line"></div>
+                        </div>
+                    </li>
+                    <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-camera-retro fa-stack-1x fa-inverse"></i>
+                    </span>
+                        <div class="ul_text">사진 보정 (WB)
+                            <div id="text_line"></div></div>
+                    </li>
+                    <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="far fa-images fa-stack-1x fa-inverse"></i>
+                    </span>
+                        <div class="ul_text">상세페이지
+                            <div id="text_line"></div></div>
+                    </li>
+                    <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-laptop-code fa-stack-1x fa-inverse"></i>
+                    </span>
+                        <div class="ul_text">웹사이트 리뉴얼 (반응형)
+                            <div id="text_line"></div></div>
+                    </li>
+                    <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-store fa-stack-1x fa-inverse"></i>
+                    </span>
+                        <div class="ul_text">쇼핑몰 (카페24)
+                            <div id="text_line"></div></div>
+                    </li>
+                    <li>
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-mobile-alt fa-stack-1x fa-inverse"></i>
+                    </span>
+                        <div class="ul_text">UI/UX 앱디자인
+                            <div id="text_line"></div></div>
+                    </li>
+                    <div id="ul_line"></div>
+                    <div id="ul_triangle"></div>
+                </ul>
+                <div class="ul_item" id="item_1">
+                    <div class="item_list">
+                        <img src="illust/fan.png">
+                        <div>유형: 수업<br>선풍기</div>
+                    </div>
+                    <div class="item_list">
+                        <img src="illust/truck.png">
+                        <div>유형: 수업<br>트럭</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="illust/phone.png">
+                        <div>유형: 수업<br>3D 아이폰</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="illust/memo.png">
+                        <div>유형: 수업<br>메모지</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="illust/cup.png">
+                        <div>유형: 수업<br>3D 컵</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="illust/cosmetic.png">
+                        <div>유형: 수업<br>화장품</div>
+                    </div>                 
+                    <div class="item_list">
+                        <img src="illust/bottle.png">
+                        <div>유형: 수업<br>처음처럼</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="illust/bear.png">
+                        <div>유형: 수업<br>곰돌이</div>
+                    </div>                    
+                    <!--<div class="item_list">
+                        <img src="illust/ryan.png">
+                        <div>유형: 취미<br>카카오프렌즈의 '라이언'입니다.</div>-->                    
+                    <div class="item_list">
+                        <img src="illust/chimaek.png">
+                        <div>유형: 취미<br>2018 대구치맥페스티벌 포스터</div>
+                    </div>                       
+                    <div class="item_list">
+                        <img src="illust/bbibbi.png">
+                        <div>유형: 취미<br>아이유 앨범, 삐삐 표지</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="illust/pubg.jpg">
+                        <div>유형: 취미<br>게임, '배틀그라운드'</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="illust/harley.png">
+                        <div>유형: 취미<br>영화, '수어사이드 스쿼드'의 할리퀸</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="illust/iron.png">
+                        <div>유형: 취미<br>영화, '아이언맨'</div>
+                    </div>                      
+                    <div class="item_list">
+                        <img src="illust/ryan_chicken.png">
+                        <div>유형: 취미<br>치킨쪼아! 라이언</div>
+                    </div>                      
+                    <div class="item_list">
+                        <img src="illust/davy.png">
+                        <div>유형: 취미<br>영화, '캐리비안의 해적'의 데비존스</div>
+                    </div>
+                    <div id="item_list_detail">
+                        <img src="illust/fan_ing.jpg">
+                        <img src="illust/truck_ing.jpg">
+                        <img src="illust/phone_ing.jpg">
+                        <img src="illust/memo_ing.jpg">
+                        <img src="illust/cup_ing.jpg">
+                        <img src="illust/cosmetic_ing.jpg">
+                        <img src="illust/bottle_ing.jpg">
+                        <img src="illust/bear_ing.jpg">
+                        <!--<img src="illust/ryan_ing.jpg">-->
+                        <img src="illust/chimaek_ing.jpg">
+                        <img src="illust/bbibbi_ing.jpg">
+                        <img src="illust/pubg_ing.jpg">
+                        <img src="illust/harley_ing.jpg">
+                        <img src="illust/iron_ing.jpg">
+                        <img src="illust/ryan_chicken_ing.jpg">
+                        <img src="illust/davy_ing.jpg">
+                    </div>
+                </div>
+                <div class="ul_item" id="item_2">
+                    <div class="item_list">
+                        <img src="photo_wb/wb1_2.jpg">
+                        <div></div>
+                    </div>
+                    <div class="item_list">
+                        <img src="photo_wb/wb2_2.jpg">
+                        <div></div>
+                    </div>                    
+                    <!--<div class="item_list">
+                        <img src="photo_wb/wb3_2.jpg">
+                        <div></div>
+                    </div>-->
+                    <div class="item_list">
+                        <img src="photo_wb/wb4_2.jpg">
+                        <div></div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="photo_wb/wb5_2.jpg">
+                        <div></div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="photo_wb/wb6_2.jpg">
+                        <div></div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="photo_wb/wb7_2.jpg">
+                        <div></div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="photo_wb/wb8_2.jpg">
+                        <div></div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="photo_wb/wb9_2.jpg">
+                        <div></div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="photo_wb/wb10_2.jpg">
+                        <div></div>
+                    </div>                    
+                    <!--<div class="item_list">
+                        <img src="photo_wb/wb11_2.jpg">
+                        <div></div>
+                    </div>-->            
+                    <div class="item_list">
+                        <img src="photo_wb/wb12_2.jpg">
+                        <div></div>
+                    </div>
+                    <div id="item_list_detail">
+                        <div class="split">
+                            <img src="photo_wb/wb1_1.jpg">
+                            <img src="photo_wb/wb2_1.jpg">
+                            <!--<img src="photo_wb/wb3_1.jpg">-->
+                            <img src="photo_wb/wb4_1.jpg">
+                            <img src="photo_wb/wb5_1.jpg">
+                            <img src="photo_wb/wb6_1.jpg">
+                            <img src="photo_wb/wb7_1.jpg">
+                            <img src="photo_wb/wb8_1.jpg">
+                            <img src="photo_wb/wb9_1.jpg">
+                            <img src="photo_wb/wb10_1.jpg">
+                            <!--<img src="photo_wb/wb11_1.jpg">-->
+                            <img src="photo_wb/wb12_1.jpg">
+                        </div>
+                        <div class="split">
+                            <img src="photo_wb/wb1_2.jpg">
+                            <img src="photo_wb/wb2_2.jpg">
+                            <!--<img src="photo_wb/wb3_2.jpg">-->
+                            <img src="photo_wb/wb4_2.jpg">
+                            <img src="photo_wb/wb5_2.jpg">
+                            <img src="photo_wb/wb6_2.jpg">
+                            <img src="photo_wb/wb7_2.jpg">
+                            <img src="photo_wb/wb8_2.jpg">
+                            <img src="photo_wb/wb9_2.jpg">
+                            <img src="photo_wb/wb10_2.jpg">
+                            <!--<img src="photo_wb/wb11_2.jpg">-->
+                            <img src="photo_wb/wb12_2.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="ul_item" id="item_3">
+                    <div class="item_list">
+                        <img src="detail/beach.jpg">
+                        <div>비치가디건</div>
+                    </div>
+                    <div class="item_list">
+                        <img src="detail/pra1.jpg">
+                        <div>고추송송사골<br><br>'맛있게 먹는 방법'의 일러스트가 포인트입니다.</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="detail/pra2.jpg">
+                        <div>9단 책장</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="detail/pra3.jpg">
+                        <div>때비누<br><br>탁상시계 일러스트가 포인트입니다.</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="detail/pra4.jpg">
+                        <div>hp 1000원</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="detail/pra5.jpg">
+                        <div>아로마<br><br>'무상 1년' 메달이 포인트입니다.</div>
+                    </div>                 
+                    <div class="item_list">
+                        <img src="detail/typ1.jpg">
+                        <div>욕실곰팡이</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="detail/typ2.jpg">
+                        <div>콩두유</div>
+                    </div>                  
+                    <div class="item_list">
+                        <img src="detail/typ3.jpg">
+                        <div>신라 솔가</div>
+                    </div>                       
+                    <div class="item_list">
+                        <img src="detail/typ4.jpg">
+                        <div>5월 솔가<br><br>편지지가 포인트입니다.</div>
+                    </div>                    
+                    <div class="item_list">
+                        <img src="detail/vita.jpg">
+                        <div>비타민 자체제작</div>
+                    </div>
+                    <div id="item_list_detail">
+                        <img src="detail/beach_ing.jpg">
+                        <img src="detail/pra1_ing.jpg">
+                        <img src="detail/pra2_ing.jpg">
+                        <img src="detail/pra3_ing.jpg">
+                        <img src="detail/pra4_ing.jpg">
+                        <img src="detail/pra5_ing.jpg">
+                        <img src="detail/typ1_ing.jpg">
+                        <img src="detail/typ2_ing.jpg">
+                        <img src="detail/typ3_ing.jpg">
+                        <img src="detail/typ4_ing.jpg">
+                        <img src="detail/vita_ing.jpg">
+                    </div>
+                </div>
+                <div class="ul_item" id="item_4">
+                    <div class="item_list">
+                        <div>더페이스샵 리뉴얼</div>
+                        <img src="website/web_1.jpg">
+                        <div><br><br>첫 개인프로젝트이며, 1920*1080 사이즈 고정입니다.<br>자바스크립트 비중이 높습니다.<br>처음인만큼 기업 및 경쟁사 분석을 꼼꼼하게 한 것이 가장 큰 특징입니다.</div>
+                    </div>
+                    <div class="item_list">
+                        <div>청춘마루 리뉴얼</div>
+                        <img src="website/web_2.jpg">
+                        <div><br><br>두번째 개인프로젝트이며, 1920*1080 사이즈 고정입니다.<br>독특한 레이아웃이 특징입니다.<br>모든 서브페이지를 구현하였습니다.</div>
+                    </div>                    
+                    <div class="item_list">
+                        <div>큐브미 리뉴얼 (반응형)</div>
+                        <img src="website/web_3.jpg">
+                        <div><br><br>세번째 개인프로젝트이며, 적응형+반응형입니다.<br>특정 해상도에서 달라지는 레이아웃이 특징입니다.<br>모든 서브페이지를 구현하였습니다.</div>
+                    </div>
+                    <div id="item_list_detail">
+                    </div>
+                </div>
+                <div class="ul_item" id="item_5">
+                    <div class="item_list">
+                        <img src="shop/shop.jpg">
+                        <div>반짝반짝 (cafe24)<br><br>상호명에 맞게 귀여우면서도 화려한 것이 특징입니다.<br>'Time Sale', '여름반짝세일' 배너는 직접 제작하였습니다.<br>상품 이미지 출처는 메이블루(http://mayblue.co.kr)입니다.</div>
+                    </div>
+                    <div id="item_list_detail">
+                        <img src="shop/shop_plan.jpg">
+                    </div>
+                </div>
+                <div class="ul_item" id="item_6">
+                    <div class="item_list">
+                        <img src="uiux/balsamiq.jpg">
+                        <div>야먹자 (UI/UX)<br><br>Balsamiq mockup을 이용하였습니다.<br>유일한 조별 프로젝트입니다.<br>기존 앱과 차별점을 두어 기획하고, 디자인하며, 프로토타입을 제작한 후, 사용성조사를 하는 단계로 이루어져 있습니다.<br><br>다운로드를 클릭하면 프로토타입 pdf버전을 받을 수 있습니다.<br>My part는 제가 한 부분만 보실 수 있습니다.
+                            <a href="uiux/B4G2_proto_type.pdf" download>다운로드↓</a>
+                            <a id="mypart" href="uiux/mypart.jpg" target="_blank">My part</a>
+                        </div>
+                    </div>
+                    <div id="item_list_detail">
+                        <img src="uiux/map.jpg">
+                    </div>
+                </div>
+                <div id="ul_wrapping"></div>
+            </div>
+        </div>
+        
+        <div class="main_box" id="main_4">
+            <div id="title">편하게 연락주세요</div>
+            <div class="title_line" id="title_top"></div>
+            <div class="title_line" id="title_right"></div>
+            <div class="title_line" id="title_bottom"></div>
+            <div class="title_line" id="title_left"></div>
+            
+            <div class="split">
+                <div id="mail_wrap">
+                    <a href="mailto:sgj4958@naver.com">
+                        <div id="mail_body"></div>
+                        <div id="mail_head"></div>
+                        <div id="mail_inner">
+                            <div class="inner_line"></div>
+                            <div class="inner_line"></div>
+                            <div class="inner_line"></div>
+                        </div>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: -1.5vh; font-size: 1.4rem;">sgj4958@naver.com</div>
+            </div>
+            <div class="split">
+                <div id="call_wrap">
+                    <a href="tel:010-8837-2673">
+                        <img src="images/call.png">
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: -1.5vh; font-size: 1.4rem;">010 8837 2673</div>
+            </div>
+        </div>
+        
+        <div id="footer">
+            &copy; 2019 SEO GI JEONG
+        </div>
+        <style>
+            #footer {width: 100%; height: 10vh; background-color: #000; color: #fff; text-align: center; line-height: 10vh; letter-spacing: .5rem;}
+        </style>
+    </div>
+    
+</body>
+    
+    <script>
+        $(document).ready( function() {
+            //$("#navigation").load("header.html");
+            //$("#footer").load("footer.html");
+            
+            scroll100per();
+        });
+        
+        var TxtType = function(el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+        TxtType.prototype.tick = function() {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+            if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+            this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+            if (this.isDeleting) { delta /= 2; }
+            if (!this.isDeleting && this.txt === fullTxt) {
+                delta = this.period;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                this.loopNum++;
+                delta = 500;
+            }
+            setTimeout(function() {
+                that.tick();
+            }, delta);
+        };
+        var elements = document.getElementsByClassName('typewrite');
+        for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-type');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+                new TxtType(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        
+        var scroll_switch = 0;
+        var move = 0;
+        var max_move;
+        function scroll100per(){
+            var elm = ".main_box";
+            $(elm).each(function (index) {
+                // 개별적으로 Wheel 이벤트 적용
+                $(this).on("mousewheel DOMMouseScroll", function (e) {
+                    e.preventDefault();
+                    var delta = 0;
+                    if (!event) event = window.event;
+                    if (event.wheelDelta) {
+                        delta = event.wheelDelta / 120;
+                        if (window.opera) delta = -delta;
+                    } 
+                    else if (event.detail)
+                        delta = -event.detail / 3;
+                    
+                    var moveTop = $(window).scrollTop();
+                    var elmSelecter = $(elm).eq(index);
+                if(scroll_switch == 0) {
+                    // 마우스휠을 위에서 아래로
+                    if (delta < 0) {
+                        if ($(elmSelecter).next() != undefined) {
+                            try{
+                                moveTop = $(elmSelecter).next().offset().top;
+                            }catch(e){}
+                        }
+                    // 마우스휠을 아래에서 위로
+                    } else {
+                        if ($(elmSelecter).prev() != undefined) {
+                            try{
+                                moveTop = $(elmSelecter).prev().offset().top;
+                            }catch(e){}
+                        }
+                    }
+                    // 화면 이동 0.8초(800)
+                    $("html,body").stop().animate({
+                        scrollTop: moveTop + 'px'
+                    }, {duration: 800});
+                }
+                else if(scroll_switch == 1) {
+                    var move_value = $('.ul_item').height()/2;
+                    if (delta < 0) {move += move_value;}
+                    else {move -= move_value;}
+                    
+                    if( $('.ul_item img:hover').length == 1 ) {
+                    max_move = $('.ul_item img:hover').height();
+                    if(move < 0) move = 0;
+                    else if(move > max_move) move = max_move;
+                    
+                    $('.ul_item').stop().animate({scrollTop: move+'px'}, 500);
+                    }
+                }
+                });
+            });
+        }
+        
+        
+        function resolution() {
+            if(innerWidth > 1281) return 0;
+            else if(innerWidth > 769) return 1;
+            else if(innerWidth > 541) return 2;
+            else return 3;
+        }
+        $(window).resize(click_x);
+
+        function detect_resize() {
+            switch(resolution()) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+            }
+        }
+        
+        $('#main_2 #ul_wrap li').click(function() {
+            switch($(this).index()) {
+                case 0:
+                    $('#main_2 #title #sub_title').html('이미지를 클릭하면 일러스트 작업화면을 볼수 있어요.<br>+버튼을 누르면 크게 볼 수 있어요.');
+                    break;
+                case 1:
+                    $('#main_2 #title #sub_title').html('이미지 클릭하면 보정 전/후를 비교할 수 있어요.<br>+버튼을 누르면 크게 볼 수 있어요.');
+                    break;
+                case 2:
+                    $('#main_2 #title #sub_title').html('클릭하면 상세페이지 작업화면을 볼 수 있어요.<br>+버튼을 누르면 크게 볼 수 있어요.');
+                    break;
+                case 3:
+                    $('#main_2 #title #sub_title').html('클릭하면 웹사이트로 이동해요.<br>+버튼을 누르면 웹사이트 기획과정을 볼 수 있어요.');
+                    break;
+                case 4:
+                    $('#main_2 #title #sub_title').html('클릭하면 쇼핑몰로 이동해요. <br>+버튼을 누르면 쇼핑몰 사업계획서를 볼 수 있어요.');
+                    break;
+                case 5:
+                    $('#main_2 #title #sub_title').html('클릭하면 앱구성을 볼 수 있어요.<br>+버튼을 누르면 UI/UX 기획과정을 볼 수 있어요.');
+                    break;
+            }
+            $('#main_2 #ul_wrap ul').css({
+                'transform':'translateX(-100%)',
+                'transition':'1s'
+            });
+            $('#main_2 .ul_item').css({
+                'visibility':'hidden',
+                'opacity':0
+            });
+            $('#main_2 #item_'+($(this).index()+1)).css({
+                'visibility':'visible',
+                'opacity':1
+            });
+        });
+        
+        $('#main_2 #ul_triangle').click(function() {
+            $('#main_2 #title #sub_title').text('');
+            $('#main_2 #ul_wrap ul').css({
+                'transform':'translateX(0)'
+            });
+            $('#main_2 .ul_item').css({
+                'visibility':'hidden',
+                'opacity':0
+            });
+            $('#main_2 #ul_wrapping').css('display','none');
+            
+            click_x();
+        });
+        
+        $('#main_2 .item_list img+div').click(function() {
+            if( $(this).parent().parent('#item_4').length == 1 ) {
+                switch( $(this).parent('.item_list').index() ) {
+                    case 0:
+                        window.open('https://sgj4958.github.io/project_thefaceshop/');
+                        break;
+                    case 1:
+                        window.open('https://sgj4958.github.io/project_ccmr/');
+                        break;
+                    case 2:
+                        window.open('https://sgj4958.github.io/project_cubeme/');
+                        break;
+                }
+            } 
+            else if( $(this).parent().parent('#item_5').length == 1 ) {
+                window.open('https://sgj4958.cafe24.com/');
+            } else {
+            $('#main_2 #ul_wrapping').css('display','block');
+            $('#main_2 #item_list_detail').css({
+                'transform':'translateX(0)',
+                'transition':'1s',
+                'opacity':1
+            });
+            $('#main_2 #item_list_detail img').css({
+                'opacity':0
+            });
+            $('#main_2 #item_list_detail img:nth-child('+($(this).parent().index()+1)+')').css({
+                'opacity':1,
+                'transition':'1s'
+            });
+            }
+        });
+        $('#main_2 #item_list_detail img').click(function() {
+            $('#main_2 #ul_wrapping').css('display','none');
+            $('#main_2 #item_list_detail').css({
+                'transform':'translateX(100%)',
+                'opacity':0
+            });
+        });
+        
+        $('#main_2 .ul_item .item_list').append('<div id="plus">+<div>');
+        $('#main_2 .ul_item .item_list #plus').click(function() {
+            if( $(this).text() == '+' ) {
+                $(this).parent('.item_list').css({
+                    'width':'100%',
+                    'height':'100%',
+                    'position':'absolute',
+                    'z-index':3,
+                    'background-color':'#fff',
+                    'transition':'.5s',
+                    'border':0
+                });
+                $(this).text('X');
+                $(this).css({
+                    'position':'fixed',
+                    'bottom':'15%',
+                    'right':'8%'
+                });
+                $(this).parent().children('img').css({
+                    'max-height':'none',
+                    'max-width':'100%',
+                    'width':'none',
+                    'height':'none',
+                    'position':'relative'
+                });
+                $('#main_2 .ul_item').css('overflow-y','scroll');
+                $('#main_2 .item_list img+div').css('display','none');
+                
+                if( $(this).parent().parent('#item_4').length == 1 ) {
+                    $(this).siblings('img').attr('src','website/plan_'+($(this).parent('.item_list').index()+1)+'.jpg');
+                }
+                if( $(this).parent().parent('#item_5').length == 1 ) {
+                    $(this).siblings('img').attr('src','shop/shop_plan.jpg');
+                }
+                if( $(this).parent().parent('#item_6').length == 1 ) {
+                    $(this).siblings('img').attr('src','uiux/plan.jpg');
+                }
+                scroll_switch = 1;
+            }
+            else {
+                $(this).parent('.item_list').css({
+                    'width':'20%',
+                    'height':'33.33%',
+                    'position':'relative',
+                    'z-index':0,
+                    'background-color':'transparent',
+                    'border':'1px solid #ccc'
+                });
+                if( $(this).parent().parent('#item_4').length == 1 ) {
+                    $(this).parent('.item_list').css({
+                        'width':'33.33%',
+                        'height':'100%'
+                    });
+                    $(this).siblings('img').attr('src','website/web_'+($(this).parent('.item_list').index()+1)+'.jpg');
+                }
+                
+                if( $(this).parent().parent('#item_5').length == 1 ) {
+                    $(this).parent('.item_list').css({
+                        'width':'100%',
+                        'height':'100%'
+                    });
+                    $(this).siblings('img').attr('src','shop/shop.jpg');
+                }
+                if( $(this).parent().parent('#item_6').length == 1 ) {
+                    $(this).parent('.item_list').css({
+                        'width':'100%',
+                        'height':'100%'
+                    });
+                    $(this).siblings('img').attr('src','uiux/balsamiq.jpg');
+                }
+                $(this).text('+');
+                $(this).css({
+                    'position':'absolute',
+                    'bottom':'3%',
+                    'right':'3%'
+                });
+                $(this).parent().children('img').css({
+                    'max-height':'95%',
+                    'max-width':'95%',
+                    'width':'auto',
+                    'height':'auto',
+                    'position':'absolute'
+                });
+                $('#main_2 .ul_item').css('overflow','hidden');
+                $('#main_2 .item_list img+div').css('display','block');
+            
+                scroll_switch = 0;
+                
+                if(resolution() == 3) {
+                    $('.item_list').css('width','50%');
+                    $('#main_2 .ul_item').css('overflow-y','scroll');
+                    $('#item_4 .item_list').css('width','100%');
+                    $('#item_5 .item_list').css('width','100%');
+                    $('#item_6 .item_list').css('width','100%');
+                }
+            }
+            
+            move = 0;
+            $('.ul_item').stop().animate({scrollTop: 0}, 500);
+        });
+        
+        function click_x() {
+            var _this = '#main_2 .ul_item .item_list #plus';
+            $('.item_list').css({
+                'width':'20%',
+                'height':'33.33%',
+                'position':'relative',
+                'z-index':0,
+                'background-color':'transparent',
+                'border':'1px solid #ccc'
+            });
+            $('#item_4 .item_list').css({
+                'width':'33.33%',
+                'height':'100%'
+            });
+            
+            $('#item_4 .item_list:nth-child(1) img').attr('src','website/web_1.jpg');
+            $('#item_4 .item_list:nth-child(2) img').attr('src','website/web_2.jpg');
+            $('#item_4 .item_list:nth-child(3) img').attr('src','website/web_3.jpg');
+            
+            $('#item_5 .item_list').css({
+                'width':'100%',
+                'height':'100%'
+            });
+            $('#item_5 .item_list img').attr('src','shop/shop.jpg');
+            
+            $('#item_6 .item_list').css({
+                'width':'100%',
+                'height':'100%'
+            });
+            $('#item_6 .item_list img').attr('src','uiux/balsamiq.jpg');
+                
+            $(_this).text('+');
+            $(_this).css({
+                'position':'absolute',
+                'bottom':'3%',
+                'right':'3%'
+            });
+            $(_this).siblings('img').css({
+                'max-height':'95%',
+                'max-width':'95%',
+                'width':'auto',
+                'height':'auto',
+                'position':'absolute'
+            });
+            $('#main_2 .ul_item').css('overflow','hidden');
+            $('#main_2 .item_list img+div').css('display','block');
+            
+            scroll_switch = 0;
+            move = 0;
+            $('.ul_item').stop().animate({scrollTop: 0}, 500);
+            
+            $('#main_2 #ul_wrapping').css('display','none');
+            $('#main_2 #item_list_detail').css({
+                'transform':'translateX(100%)',
+                'opacity':0
+            });
+            
+            if(resolution() == 3) {
+                $('.item_list').css('width','50%');
+                $('#main_2 .ul_item').css('overflow-y','scroll');
+                $('#item_4 .item_list').css('width','100%');
+                $('#item_5 .item_list').css('width','100%');
+                $('#item_6 .item_list').css('width','100%');
+            }
+        }
+        
+        $('#main_5 li').hover(
+            function() {
+                $('#main_5 #background').css({
+                    'opacity':'0.3',
+                    'position':'absolute',
+                    'top':'5.5%',
+                    'bottom':'5.5%',
+                    'left':'5.5%',
+                    'right':'5.5%',
+                    'background-size':'contain',
+                    'background-position':'center',
+                    'background-repeat':'no-repeat',
+                    'background-attachment':'fixed',
+                    'transition':'1s'
+                });
+                switch($(this).index()) {
+                    case 0:
+                        $('#main_5 #background').css('background-image','url("intro/detail.jpg")');
+                        break;
+                    case 1:
+                        $('#main_5 #background').css('background-image','url("intro/illust.jpg")');
+                        break;
+                    case 2:
+                        $('#main_5 #background').css('background-image','url("intro/web.jpg")');
+                        break;
+                    case 3:
+                        $('#main_5 #background').css('background-image','url("intro/shop.png")');
+                        break;
+                    case 4:
+                        $('#main_5 #background').css('background-image','url("intro/photo.jpg")');
+                        break;
+                    case 5:
+                        $('#main_5 #background').css({
+                            'background-image':'url("shop/shop_plan.jpg")',
+                            'background-size':'cover',
+                            'background-position':'top'
+                        });
+                        break;
+                    case 6:
+                        $('#main_5 #background').css('background-image','url("intro/uiux.png")');
+                        break;
+                }
+            },
+            function() {$('#main_5 #background').css({'background-image':'','opacity':0});}
+        );
+        
+        window.addEventListener('scroll', function() {
+             var move_value = pageYOffset/innerHeight *100;
+             $('#main_1 .typewrite, #main_1 .typewrite+div').css({
+                 'opacity':1-move_value,
+                 'transition':'.5s'
+             });
+             $('#main_1 .moving_text:nth-child(1)').css({
+                 'transform':'translateY('+(move_value*0.3)+'vh)'
+             });
+             $('#main_1 .moving_text:nth-child(2)').css({
+                 'transform':'translateY('+(move_value*0.4)+'vh)'
+             });
+             $('#main_1 .moving_text:nth-child(3)').css({
+                 'transform':'translateY('+(move_value*0.2)+'vh)'
+             });
+             $('#main_1 .moving_text:nth-child(4)').css({
+                 'transform':'translateY('+(move_value*0.5)+'vh)'
+             });
+             $('#main_1 .moving_text:nth-child(5)').css({
+                 'transform':'translateY('+(move_value*0.25)+'vh)'
+             });
+             $('#main_1 .moving_text:nth-child(6)').css({
+                 'transform':'translateY('+(move_value*0.085)+'vh)'
+             });
+             $('#main_1 .moving_text:nth-child(7)').css({
+                 'transform':'translateY('+(move_value*0.07)+'vh)'
+             });
+             $('#main_1 .moving_text:nth-child(8)').css({
+                 'transform':'translateY('+(move_value*0.1)+'vh)'
+             });
+             
+             if(pageYOffset == $('#main_5').offset().top) {
+                 $('#main_5 ul').css({'transform':'scaleX(1)'});
+             }
+             if(pageYOffset == $('#main_5').offset().top) {
+                 $('#main_5 ol').css({'transform':'scaleX(1)'});
+             }
+             if(pageYOffset == $('#main_2').offset().top) {
+                 $('#main_2 #ul_wrap').css({'transform':'scaleX(1)'});
+             }
+        });
+        
+        $('.move_window').draggable({opacity:.7});
+        
+    </script>
+    
+        
+        <!-- moving atom scripts --><!--
+			<meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
+ 			<meta name="author" content="Vincent Garreau" />
+			<script src="moving_atom_js/particles.js"></script>
+			<script src="moving_atom_js/app.js"></script>
+
+			<script src="moving_atom_js/stats.js"></script>
+			<script>
+				  var count_particles, stats, update;
+				  stats = new Stats;
+				  stats.setMode(0);
+				  stats.domElement.style.position = 'absolute';
+				  stats.domElement.style.left = '0px';
+				  stats.domElement.style.top = '0px';
+				  stats.domElement.style.display = 'none';
+				  document.body.appendChild(stats.domElement);
+				  count_particles = document.querySelector('.js-count-particles');
+				  update = function() {
+					stats.begin();
+					stats.end();
+					if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+					  count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+					}
+					requestAnimationFrame(update);
+				  };
+				  requestAnimationFrame(update);
+			</script>-->
+</html>
