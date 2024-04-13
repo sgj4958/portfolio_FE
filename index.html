@@ -107,11 +107,20 @@
     
   <script>
     const 스크롤 = 타겟 => $("html,body").stop()
-    .animate({scrollTop: $(`#${타겟}`).offset().top + 'px'}, {duration: 800})
+      .animate({scrollTop: $(`#${타겟}`).offset().top + 'px'}, {duration: 800, complete: () => 스크롤위치추가하기()})
 
     const 스크롤위치확인 = 타겟 => $(window).scrollTop() > document.querySelector(`#${타겟}`).offsetTop
     const 스크롤위치추가 = 타겟 => document.querySelector(`#메뉴 li:nth-child(${타겟})`).classList.add("위치표시")
-    
+    function 스크롤위치추가하기() {
+      document.querySelectorAll("#메뉴 li").forEach(v => v.classList.remove("위치표시"))
+        if(스크롤위치확인("education")) 스크롤위치추가(6)
+        else if(스크롤위치확인("otherexperience")) 스크롤위치추가(5)
+        else if(스크롤위치확인("certification")) 스크롤위치추가(4)
+        else if(스크롤위치확인("project")) 스크롤위치추가(3)
+        else if(스크롤위치확인("workexperience")) 스크롤위치추가(2)
+        else if(스크롤위치확인("introduce")) 스크롤위치추가(1)
+    }
+
     $(document).ready(() => {
       const 스크롤보정치 = 50
       $(this).on("mousewheel DOMMouseScroll", e => {
@@ -121,14 +130,7 @@
           document.querySelector("#메뉴").classList.add("숨기기")
           스크롤("main_middle")
         }
-
-        document.querySelectorAll("#메뉴 li").forEach(v => v.classList.remove("위치표시"))
-        if(스크롤위치확인("education")) 스크롤위치추가(6)
-        else if(스크롤위치확인("otherexperience")) 스크롤위치추가(5)
-        else if(스크롤위치확인("certification")) 스크롤위치추가(4)
-        else if(스크롤위치확인("project")) 스크롤위치추가(3)
-        else if(스크롤위치확인("workexperience")) 스크롤위치추가(2)
-        else if(스크롤위치확인("introduce")) 스크롤위치추가(1)
+        스크롤위치추가하기()
       })
     });
 
