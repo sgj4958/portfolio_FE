@@ -117,7 +117,10 @@ blockquote {
   border-radius: 10px;
   position: relative;
 
-  img {height: 100%;}
+  img {
+    height: 100%;
+    max-width: 100%;
+  }
 
   &:hover #링크안내 {
     opacity: 1;

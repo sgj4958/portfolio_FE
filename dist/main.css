@@ -173,6 +173,7 @@ blockquote .sub {
 }
 .project_img_wrap img {
   height: 100%;
+  max-width: 100%;
 }
 .project_img_wrap:hover #링크안내 {
   opacity: 1;
