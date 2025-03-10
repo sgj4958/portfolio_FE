@@ -281,7 +281,7 @@ footer #footer_body {
   z-index: 2;
   transition: 0.5s;
   letter-spacing: -2px;
-  background: linear-gradient(0deg, #eee, transparent);
+  background: linear-gradient(0deg, #ddd, transparent);
   background-blend-mode: multiply;
   display: flex;
   justify-content: center;
@@ -289,4 +289,5 @@ footer #footer_body {
   text-shadow: -1px 0px #eee, 0px 1px #eee, 1px 0px #eee, 0px -1px #eee;
   color: #333;
   backdrop-filter: blur(2px);
+  border-top: 5px solid gold;
 }
