@@ -82,6 +82,10 @@
         <aside id="project">
           <header>Project.</header>
         </aside>
+        
+        <aside id="sideproject">
+          <header>Side Project.</header>
+        </aside>
 
         <aside id="certification">
           <header>Certification.</header>
@@ -99,7 +103,7 @@
 
       <footer>
         <div id="footer_head"></div>
-        <div id="footer_body">&copy; 2023 SEO GI JEONG</div>
+        <div id="footer_body">&copy; 2025 SEO GI JEONG</div>
       </footer>
     </main>
   </body>
@@ -321,8 +325,8 @@
               <div class="swiper-button-prev"></div>
               <div class="swiper-button-next"></div>
               </div>
-
           </div>
+
           <div class="title">
             ${e.타이틀}
             ${
@@ -370,15 +374,102 @@
 
     [
       {
+        target: "sideproject",
+        content: [
+          {
+            이미지: ["chart.png"],
+            링크: "https://sgj4958.github.io/chart/",
+            기간: "#10",
+            제목: "Chart",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "차트 구현"
+          },
+          {
+            이미지: ["file.gif"],
+            링크: "https://sgj4958.github.io/DND_fileUpload/",
+            기간: "#9",
+            제목: "DND FileUpload",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "드래그앤드랍 파일업로드 구현"
+          },
+          {
+            이미지: ["DND.gif"],
+            링크: "https://sgj4958.github.io/dragAndDrop/",
+            기간: "#8",
+            제목: "DND",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "드래그앤드랍 구현"
+          },
+          {
+            이미지: ["toast.gif"],
+            링크: "https://sgj4958.github.io/toast/",
+            기간: "#7",
+            제목: "Toast",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "토스트 구현"
+          },
+          {
+            이미지: ["modal.gif"],
+            링크: "https://sgj4958.github.io/modal/",
+            기간: "#6",
+            제목: "Draggable Modal",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "드래그 가능한 모달 구현"
+          },
+          {
+            이미지: ["table.gif"],
+            링크: "https://sgj4958.github.io/table/",
+            기간: "#5",
+            제목: "Table",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "테이블 구현"
+          },
+          {
+            이미지: ["slides.gif"],
+            링크: "https://sgj4958.github.io/slides/",
+            기간: "#4",
+            제목: "Slides",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "슬라이드 구현"
+          },
+          {
+            이미지: ["tabs.gif"],
+            링크: "https://sgj4958.github.io/tabs/",
+            기간: "#3",
+            제목: "Tabs",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "탭 구현"
+          },
+          {
+            이미지: ["dropDown.gif"],
+            링크: "https://sgj4958.github.io/dropDown/",
+            기간: "#2",
+            제목: "DropDown",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "드랍다운 구현"
+          },
+          {
+            이미지: ["sideBar.gif"],
+            링크: "https://sgj4958.github.io/sideBarJS/",
+            기간: "#1",
+            제목: "SideBar",
+            소제목: "바닐라 JS 프로젝트",
+            내용: "사이드바 구현"
+          },
+        ]
+      },
+      {
         target: "certification",
         content: [
           {
+            이미지: ["cert_1.jpg"],
             기간: "2022.09",
             제목: "정보처리기사",
             소제목: "한국산업인력공단",
             내용: "자격번호: 22202070887Z"
           },
           {
+            이미지: ["cert_2.jpg"],
             기간: "2017.02",
             제목: "ISTQB",
             소제목: "KSTQB",
@@ -480,7 +571,34 @@
         unit.innerHTML = `
           <div class="split">${e_.기간}</div>
           <div class="split">
-            <div class="title">${e_.제목}</div>
+
+            ${
+              e_.이미지?.length ? `
+              <div class="project_img_wrap">
+                ${e_.링크 ? `<div id="링크안내">이미지를 클릭하시면 링크로 이동해요 !</div>` : ""}
+                <div class="swiper">
+                  <div class="swiper-wrapper">
+                    ${
+                      e_.이미지.map(v => `<div class="swiper-slide"><a ${
+                        e_.링크 ? `href="${e_.링크}"` : ""
+                      } target="_blank"><img src="images/${v}"></a></div>`).join(" ")
+                    }
+                  </div>
+                </div>
+              </div>
+              ` : ``
+            }
+
+            <div class="title">
+              ${e_.제목}
+              ${
+                e_.링크 ?
+                `<div class="app_link">
+                  <a href="${e_.링크}" target="_blank"></a>
+                </div>`
+                : ``
+              }
+            </div>
             <div class="sub">${e_.소제목}</div>
             <article>${e_.내용}</article>
           </div>`
