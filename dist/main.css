@@ -248,22 +248,34 @@ footer #footer_body {
   transition: 0.5s;
 }
 #메뉴 ul {
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 #메뉴 ul li {
-  float: left;
   color: #555;
   letter-spacing: -2px;
   margin: 0 20px;
   cursor: pointer;
+  position: relative;
 }
 #메뉴 ul li::first-letter {
   font-size: 150%;
   font-weight: bold;
   color: var(--메인컬러);
+}
+#메뉴 ul li::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  background: gold;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
+}
+#메뉴 ul li:hover::after {
+  width: 100%;
 }
 #메뉴 .위치표시 {
   text-decoration: underline;
@@ -273,21 +285,36 @@ footer #footer_body {
 
 #링크안내 {
   opacity: 0;
-  width: 100%;
-  height: 60px;
-  padding: 10px 5px;
+  width: fit-content;
+  padding: 5px 30px 5px 5px;
   position: absolute;
-  bottom: 0;
+  top: 10px;
+  left: 10px;
   z-index: 2;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
   transition: 0.5s;
+  line-height: 1.2;
   letter-spacing: -2px;
-  background: linear-gradient(0deg, #ddd, transparent);
-  background-blend-mode: multiply;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-shadow: -1px 0px #eee, 0px 1px #eee, 1px 0px #eee, 0px -1px #eee;
-  color: #333;
-  backdrop-filter: blur(2px);
-  border-top: 5px solid gold;
+  color: #555;
+}
+#링크안내 > div {
+  position: relative;
+  top: -7px;
+}
+#링크안내 span {
+  color: var(--메인컬러);
+  font-weight: bold;
+}
+#링크안내::before {
+  content: "TIP";
+  position: relative;
+  top: -14px;
+  left: 0;
+  letter-spacing: 2px;
+  color: gold;
+  font-weight: bold;
+  border-radius: 5px;
+  background: #fff;
 }

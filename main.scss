@@ -170,22 +170,36 @@ footer {
   transition: .5s;
 
   ul {
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 
     li {
-      float: left;
       color: #555;
       letter-spacing: -2px;
       margin: 0 20px;
       cursor: pointer;
+      position: relative;
 
       &::first-letter {
         font-size: 150%;
         font-weight: bold;
         color: var(--메인컬러);
+      }
+
+      &::after {
+        content: "";
+        width: 0%;
+        height: 3px;
+        background: gold;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        transition: 0.3s;
+      }
+
+      &:hover::after {
+        width: 100%;
       }
     }
   }
@@ -200,7 +214,7 @@ footer {
 #링크안내 {
   opacity: 0;
   width: fit-content;
-  padding: 5px 10px;
+  padding: 5px 30px 5px 5px;
   position: absolute;
   top: 10px;
   left: 10px;
@@ -212,6 +226,26 @@ footer {
   line-height: 1.2;
   letter-spacing: -2px;
   color: #555;
+  
+  // 링크안내 버전2
+  // opacity: 0;
+  // width: 100%;
+  // height: 60px;
+  // padding: 10px 5px;
+  // position: absolute;
+  // bottom: 0;
+  // z-index: 2;
+  // transition: 0.5s;
+  // letter-spacing: -2px;
+  // background: linear-gradient(0deg, #ddd, transparent);
+  // background-blend-mode: multiply;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // text-shadow: -1px 0px #eee, 0px 1px #eee, 1px 0px #eee, 0px -1px #eee;
+  // color: #333;
+  // backdrop-filter: blur(2px);
+  // border-top: 5px solid gold;
 
   >div {
     position: relative;
