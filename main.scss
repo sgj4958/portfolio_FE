@@ -95,7 +95,7 @@ blockquote {
     &:nth-child(2) {width: calc(100% - 200px);}
   }
   .title {font-size: 20px; font-weight: bold; display: block;}
-  .sub {color: #333; margin: 10px 0 15px; padding-bottom: 5px; border-bottom: 1px solid #eee;}
+  .sub {color: #555; margin: 10px 0 15px; padding-bottom: 5px; border-bottom: 1px solid #eee;}
 }
 .stack {
   &::before {content: "기술 스택 : ";}
@@ -157,8 +157,6 @@ footer {
   #footer_body {height: 60px; background-color: #000; color: #fff; text-align: center; line-height: 60px; letter-spacing: .5rem;}
 }
 
-
-.숨기기 {display: none;}
 #메뉴 {
   position: fixed;
   width: 100%;
@@ -176,10 +174,14 @@ footer {
 
     li {
       color: #555;
-      letter-spacing: -2px;
+      letter-spacing: -1px;
       margin: 0 20px;
       cursor: pointer;
       position: relative;
+
+      padding: 0 10px;
+      border-radius: 50px;
+      transition: .2s;
 
       &::first-letter {
         font-size: 150%;
@@ -205,9 +207,9 @@ footer {
   }
 
   .위치표시 {
-    text-decoration: underline;
-    text-decoration-color: var(--메인컬러);
-    text-decoration-thickness: 7px;
+    color: #fff;
+    font-weight: bold;
+    background: #555;
   }
 }
 
